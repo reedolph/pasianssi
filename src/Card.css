@@ -1,0 +1,9 @@
+.card {
+	display: block;
+	width: 100%;
+	height: auto;
+
+	border: 0.1rem solid #000;
+	border-radius: 0.5rem;
+	box-shadow: 0rem 0rem 2rem -0.15rem rgba(0,0,0,0.75);
+}
