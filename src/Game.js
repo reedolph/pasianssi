@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+// import HTML5Backend from 'react-dnd-html5-backend';
 import TouchBackend from 'react-dnd-touch-backend';
 
 import { Suits, SuitColors, Ranks } from './Constants.js';
@@ -10,6 +10,7 @@ import Stock from './Stock.js';
 import Waste from './Waste.js';
 import Foundation from './Foundation.js';
 import Tableau from './Tableau.js';
+import CustomDragLayer from './CustomDragLayer.js';
 
 // import './Game.css';
 
@@ -156,7 +157,6 @@ class Game extends Component {
 
 	handleDrop(droppedCards, source, destination) {
 		const board = this.state.board;
-		const bottomDroppedCard = droppedCards[0];
 
 		let topDestinationCard;
 		if (board[destination].length > 0) {
@@ -168,19 +168,27 @@ class Game extends Component {
 				return false;
 			}
 
+			const droppedCard = droppedCards[0];
+
 			if (board[destination].length === 0) {
+				if (droppedCard.rank !== 1) {
+					return false;
+				}
 				this.moveCards(droppedCards, source, destination);
 			} else {
-				if (bottomDroppedCard.suit !== topDestinationCard.suit || bottomDroppedCard.rank !== topDestinationCard.rank + 1) {
+				if (droppedCard.suit !== topDestinationCard.suit || droppedCard.rank !== topDestinationCard.rank + 1) {
 					return false;
 				}
 				this.moveCards(droppedCards, source, destination);
 			}
 		} else if (destination.startsWith('tableau')) {
+			const bottomDroppedCard = droppedCards[0];
+
 			if (board[destination].length === 0) {
-				if (droppedCards[0].rank === Ranks.KING) {
-					this.moveCards(droppedCards, source, destination);
+				if (bottomDroppedCard.rank !== Ranks.KING) {
+					return false;
 				}
+				this.moveCards(droppedCards, source, destination);
 			} else {
 				if (SuitColors[bottomDroppedCard.suit] === SuitColors[topDestinationCard.suit]) {
 					return false;
@@ -253,7 +261,10 @@ class Game extends Component {
 			id = `foundation${i}`;
 
 			foundations.push(
-				<Foundation id={id} key={id} cards={this.state.board[id]}
+				<Foundation
+					id={id}
+					key={id}
+					cards={this.state.board[id]}
 					handleDrop={this.handleDrop.bind(this)}
 				/>
 			);
@@ -264,7 +275,10 @@ class Game extends Component {
 			id = `tableau${i}`;
 
 			tableaus.push(
-				<Tableau id={id} key={id} cards={this.state.board[id]}
+				<Tableau
+					id={id}
+					key={id}
+					cards={this.state.board[id]}
 					handleDrop={this.handleDrop.bind(this)}
 					handleClick={this.handleClick.bind(this)}
 					handleDoubleClick={this.handleDoubleClick.bind(this)}
@@ -286,9 +300,10 @@ class Game extends Component {
 				<div className="tableRow" draggable="false">
 					{tableaus}
 				</div>
+				<CustomDragLayer />
 			</div>
 		);
 	}
 }
 
-export default DragDropContext(HTML5Backend)(Game);
+export default DragDropContext(TouchBackend({ enableMouseEvents: true }))(Game);

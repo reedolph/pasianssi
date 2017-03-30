@@ -1,0 +1,71 @@
+import React from 'react';
+import { DragLayer } from 'react-dnd';
+
+import CardDragPreview from './CardDragPreview.js';
+import TableauPartDragPreview from './TableauPartDragPreview.js';
+
+function collect(monitor) {
+	return {
+		item: monitor.getItem(),
+		itemType: monitor.getItemType(),
+		currentOffset: monitor.getSourceClientOffset(),
+		isDragging: monitor.isDragging()
+	};
+}
+
+function getStyles(props) {
+	const { item, currentOffset } = props;
+	const { rect } = item;
+	const { width, height } = rect;
+
+	if (!currentOffset) {
+		return {
+			display: 'none'
+		};
+	}
+
+	const { x, y } = currentOffset;
+	const transform = `translate(${x}px, ${y}px)`;
+
+	return {
+		position: 'absolute',
+		left: 0,
+		top: 0,
+		width: width + 'px',
+		height: height + 'px',
+		pointerEvents: 'none',
+		transform: transform,
+		WebkitTransform: transform
+	};
+}
+
+const CustomDragLayer = (props) => {
+	const { isDragging, item, itemType } = props;
+
+	if (!isDragging) {
+		return null;
+	}
+
+	switch (itemType) {
+		case 'card':
+			const { rank, suit, isFaceUp } = item;
+
+			return (
+				<div style={getStyles(props)}>
+					<CardDragPreview rank={rank} suit={suit} isFaceUp={isFaceUp} />
+				</div>
+			);
+		case 'tableauPart':
+			const { cards } = item;
+
+			return (
+				<div style={getStyles(props)}>
+					<TableauPartDragPreview cards={cards} />
+				</div>
+			);
+		default:
+			break;
+	}
+};
+
+export default DragLayer(collect)(CustomDragLayer);
