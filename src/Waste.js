@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from './Card.js';
 
-// import './Waste.css';
+import './Waste.css';
 
 const Waste = (props) => {
 	const { handleDoubleClick } = props;

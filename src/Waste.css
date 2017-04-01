@@ -1,0 +1,33 @@
+.area.waste {
+	background-size: 49% 98%;
+	background-position: left;
+
+	flex: 2;
+}
+
+.waste .card {
+	position: relative;
+	top: 0;
+	left: 0;
+	max-width: 50%;
+
+	box-shadow: none;
+}
+
+.waste .card.spread,
+.waste .card:last-child:not(.spread) {
+	border: 0.1rem solid #000;
+	border-radius: 0.5rem;
+	box-shadow: 0rem 0rem 2rem -0.15rem rgba(0,0,0,0.75);
+}
+
+.waste .card + .card {
+	position: absolute;
+}
+
+.waste .card.spread + .card.spread {
+	margin-left: 8%;
+}
+.waste .card.spread + .card.spread + .card.spread {
+	margin-left: 16%;
+}

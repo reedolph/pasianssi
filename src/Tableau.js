@@ -1,10 +1,9 @@
 import React from 'react';
+import { DropTarget } from 'react-dnd';
 
 import TableauPart from './TableauPart.js';
 
-import { DropTarget } from 'react-dnd';
-
-// import './Tableau.css';
+import './Tableau.css';
 
 const tableauTarget = {
 	canDrop(props) {

@@ -12,7 +12,7 @@ import Foundation from './Foundation.js';
 import Tableau from './Tableau.js';
 import CustomDragLayer from './CustomDragLayer.js';
 
-// import './Game.css';
+import './Game.css';
 
 class Game extends Component {
 	constructor(props) {

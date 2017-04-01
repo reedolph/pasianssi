@@ -1,0 +1,23 @@
+.area.foundation {
+	background-color: #004000;
+	background-size: 98%;
+	background-repeat: no-repeat;
+	background-position: center;
+	box-shadow: 0rem 0rem 2rem -0.15rem rgba(0,0,0,0.25);
+}
+
+.foundation .card {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.foundation .card + .card {
+	position: absolute;
+	box-shadow: none;
+}
+
+.foundation.active {
+	background-color: #005000;
+	box-shadow: 0rem 0rem 2rem -0.15rem rgba(0,0,0,0.25);
+}

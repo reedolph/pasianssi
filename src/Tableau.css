@@ -1,0 +1,7 @@
+.area.tableau {
+	background-position: top;
+}
+
+.tableau .card + .card {
+	margin-top: -120%;
+}

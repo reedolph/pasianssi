@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from './Card.js';
 
-// import './Stock.css';
+import './Stock.css';
 
 const Stock = (props) => {
 	const { cards, handleClick } = props;

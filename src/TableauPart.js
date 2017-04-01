@@ -5,7 +5,7 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import Card from './Card.js';
 
-// import './TableauPart.css';
+import './TableauPart.css';
 
 function tableauPartCollect(connect, monitor) {
 	return {

@@ -1,10 +1,9 @@
 import React from 'react';
+import { DropTarget } from 'react-dnd';
 
 import Card from './Card.js';
 
-import { DropTarget } from 'react-dnd';
-
-// import './Foundation.css';
+import './Foundation.css';
 
 const foundationTarget = {
 	canDrop(props) {

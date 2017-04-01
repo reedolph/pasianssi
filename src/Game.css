@@ -1,0 +1,32 @@
+.game {
+	width: auto;
+	max-width: 1200px;
+	max-height: 100%;
+	margin: 0 auto;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.tableRow {
+	width: 100%;
+
+	flex: 1;
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.area {
+	width: 14.285%;
+	position: relative;
+	margin: 0.5%;
+	border-radius: 0.5rem;
+
+	flex: 1;
+}
+
+.area.active .card {
+	box-shadow: 0rem 0rem 2rem -0.15rem rgba(255,255,255,1);
+}
