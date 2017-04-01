@@ -83,89 +83,28 @@ class Card extends Component {
 			isSpread: isSpread
 		};
 
+		let onClick = null;
+		if (isClickable) {
+			onClick = (e) => handleClick(e, location, card);
+		}
+
+		let onDoubleClick = null;
+		if (isDoubleClickable) {
+			onDoubleClick = (e) => handleDoubleClick(e, location, card);
+		}
+
 		if (isDraggable) {
-			if (isClickable && isDoubleClickable) {
-				return (
-					connectDragSource(
-						<img
-								className={'card' + (isSpread ? ' spread' : '')}
-						src={image}
-						alt={rank + suit}
-						style={getStyles(this.props)}
-						onClick={(e) => { handleClick(e, location, card); }}
-						onDoubleClick={(e) => { handleDoubleClick(e, location, card); }}
-						/>
-					)
-				);
-			} else if (isClickable) {
-				return (
-					connectDragSource(
-						<img
-								className={'card' + (isSpread ? ' spread' : '')}
-						src={image}
-						alt={rank + suit}
-						style={getStyles(this.props)}
-						onClick={(e) => { handleClick(e, location, card); }}
-						/>
-					)
-				);
-			} else if (isDoubleClickable) {
-				return (
-					connectDragSource(
-						<img
-								className={'card' + (isSpread ? ' spread' : '')}
-						src={image}
-						alt={rank + suit}
-						style={getStyles(this.props)}
-						onDoubleClick={(e) => { handleDoubleClick(e, location, card); }}
-						/>
-					)
-				);
-			} else {
-				return (
-					connectDragSource(
-						<img
-								className={'card' + (isSpread ? ' spread' : '')}
-						src={image}
-						alt={rank + suit}
-						style={getStyles(this.props)}
-						/>
-					)
-				);
-			}
-		} else if (isClickable && isDoubleClickable) {
 			return (
-				<img
-				className={'card' + (isSpread ? ' spread' : '')}
-				src={image}
-				alt={rank + suit}
-				style={getStyles(this.props)}
-				onClick={(e) => { handleClick(e, location, card); }}
-				onDoubleClick={(e) => { handleDoubleClick(e, location, card); }}
-				draggable={false}
-				/>
-			);
-		} else if (isClickable) {
-			return (
-				<img
-				className={'card' + (isSpread ? ' spread' : '')}
-				src={image}
-				alt={rank + suit}
-				style={getStyles(this.props)}
-				onClick={(e) => { handleClick(e, location, card); }}
-				draggable={false}
-				/>
-			);
-		} else if (isDoubleClickable) {
-			return (
-				<img
-				className={'card' + (isSpread ? ' spread' : '')}
-				src={image}
-				alt={rank + suit}
-				style={getStyles(this.props)}
-				onDoubleClick={(e) => { handleDoubleClick(e, location, card); }}
-				draggable={false}
-				/>
+				connectDragSource(
+					<img
+					className={'card' + (isSpread ? ' spread' : '')}
+					src={image}
+					alt={rank + suit}
+					style={getStyles(this.props)}
+					onClick={onClick}
+					onDoubleClick={onDoubleClick}
+					/>
+				)
 			);
 		} else {
 			return (
@@ -174,6 +113,8 @@ class Card extends Component {
 				src={image}
 				alt={rank + suit}
 				style={getStyles(this.props)}
+				onClick={onClick}
+				onDoubleClick={onDoubleClick}
 				draggable={false}
 				/>
 			);
@@ -181,4 +122,6 @@ class Card extends Component {
 	}
 };
 
-export default DragSource('card', cardSource, cardCollect)(Card);
+const DraggableCard = DragSource('card', cardSource, cardCollect)(Card);
+
+export default DraggableCard;

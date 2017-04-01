@@ -82,33 +82,18 @@ class TableauPart extends Component {
 				}
 			}
 
-			if (isLast) {
-				firstCard = (
-					<Card
-						location={location}
-						rank={rank}
-						suit={suit}
-						isFaceUp={isFaceUp}
-						isDraggable={isDraggable}
-						isClickable={isClickable}
-						isDoubleClickable={isDoubleClickable}
-						handleClick={handleClick}
-						handleDoubleClick={handleDoubleClick}
-					/>
-				);
-			} else {
-				firstCard = (
-					<Card
-						location={location}
-						rank={rank}
-						suit={suit}
-						isFaceUp={isFaceUp}
-						isDraggable={isDraggable}
-						isClickable={isClickable}
-						isDoubleClickable={isDoubleClickable}
-					/>
-				);
-			}
+			firstCard = <Card
+				location={location}
+				rank={rank}
+				suit={suit}
+				isFaceUp={isFaceUp}
+				isDraggable={isDraggable}
+				isClickable={isClickable}
+				isDoubleClickable={isDoubleClickable}
+				handleClick={handleClick}
+				handleDoubleClick={handleDoubleClick}
+			/>;
+
 			if (cards.length > 1) {
 				tableauPart = (
 					<DraggableTableauPart
