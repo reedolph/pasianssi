@@ -1,7 +1,7 @@
 import React from 'react';
 import { DragLayer } from 'react-dnd';
 
-import CardDragPreview from './CardDragPreview.js';
+import Card from './Card.js';
 import TableauPartDragPreview from './TableauPartDragPreview.js';
 
 function collect(monitor) {
@@ -52,7 +52,7 @@ const CustomDragLayer = (props) => {
 
 			return (
 				<div style={getStyles(props)}>
-					<CardDragPreview rank={rank} suit={suit} isFaceUp={isFaceUp} />
+					<Card rank={rank} suit={suit} isFaceUp={isFaceUp} />
 				</div>
 			);
 		case 'tableauPart':

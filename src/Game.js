@@ -124,6 +124,10 @@ class Game extends Component {
 	}
 
 	moveCards(cards, source, destination) {
+		console.log('moveCards');
+		console.log(cards);
+		console.log(source);
+
 		const board = this.state.board;
 
 		board[source] = board[source].filter((card) => {

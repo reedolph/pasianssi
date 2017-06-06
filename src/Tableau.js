@@ -1,6 +1,7 @@
 import React from 'react';
 import { DropTarget } from 'react-dnd';
 
+import DraggableTableauPart from './DraggableTableauPart.js';
 import TableauPart from './TableauPart.js';
 
 import './Tableau.css';
@@ -46,16 +47,29 @@ const Tableau = (props) => {
 
 	const isActive = canDrop && isOver;
 
+	let firstTableauPart;
+	if (cards.length >= 1 && cards[0].isFaceUp) {
+		firstTableauPart = <DraggableTableauPart
+			key={`${id}${cards.length - 1}`}
+			location={id}
+			cards={cards}
+			handleClick={handleClick}
+			handleDoubleClick={handleDoubleClick}
+		/>
+	} else if (!cards[0].isFaceUp) {
+		firstTableauPart = <TableauPart
+			key={`${id}${cards.length - 1}`}
+			location={id}
+			cards={cards}
+			handleClick={handleClick}
+			handleDoubleClick={handleDoubleClick}
+		/>
+	}
+
 	return (
 		connectDropTarget(
 			<div id={id} className={'tableau area' + (isActive ? ' active' : '')}>
-				<TableauPart
-					key={`${id}${cards.length - 1}`}
-					location={id}
-					cards={cards}
-					handleClick={handleClick}
-					handleDoubleClick={handleDoubleClick}
-				/>
+				{firstTableauPart}
 			</div>
 		)
 	);
