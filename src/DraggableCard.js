@@ -25,11 +25,13 @@ function getStyles(props) {
 }
 
 const cardSource = {
-	canDrag: function(props, monitor) {
-		return props.isDraggable;
+	canDrag(props, monitor) {
+		console.log('DraggableCard canDrag true');
+		return true;
 	},
 
 	beginDrag(props, monitor, component) {
+		console.log('DraggableCard beginDrag');
 		return {
 			location: props.location,
 			rank: props.rank,
@@ -54,12 +56,27 @@ class DraggableCard extends Component {
 	}
 
 	render() {
+		const {
+			location, rank, suit, isFaceUp, isSpread,
+			isClickable, isDoubleClickable,
+			handleClick, handleDoubleClick
+		} = this.props;
+
 		return (
 			this.props.connectDragSource(
-				<div>
+				<div className="draggableCard">
 					<Card
-						{...this.props}
-						styles={getStyles(this.props)}
+						location={location}
+						rank={rank}
+						suit={suit}
+						isFaceUp={isFaceUp}
+						isSpread={isSpread}
+						isClickable={isClickable}
+						isDoubleClickable={isDoubleClickable}
+						handleClick={handleClick}
+						handleDoubleClick={handleDoubleClick}
+						isDraggable={true}
+						style={getStyles(this.props)}
 					/>
 				</div>
 			)

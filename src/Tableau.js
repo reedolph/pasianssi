@@ -48,7 +48,7 @@ const Tableau = (props) => {
 	const isActive = canDrop && isOver;
 
 	let firstTableauPart;
-	if (cards.length >= 1 && cards[0].isFaceUp) {
+	if (cards.length > 1 && cards[0].isFaceUp) {
 		firstTableauPart = <DraggableTableauPart
 			key={`${id}${cards.length - 1}`}
 			location={id}
@@ -56,7 +56,7 @@ const Tableau = (props) => {
 			handleClick={handleClick}
 			handleDoubleClick={handleDoubleClick}
 		/>
-	} else if (!cards[0].isFaceUp) {
+	} else if (cards.length <= 1 || !cards[0].isFaceUp) {
 		firstTableauPart = <TableauPart
 			key={`${id}${cards.length - 1}`}
 			location={id}

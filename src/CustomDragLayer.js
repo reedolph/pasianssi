@@ -2,7 +2,7 @@ import React from 'react';
 import { DragLayer } from 'react-dnd';
 
 import Card from './Card.js';
-import TableauPartDragPreview from './TableauPartDragPreview.js';
+import TableauPart from './TableauPart.js';
 
 function collect(monitor) {
 	return {
@@ -60,7 +60,7 @@ const CustomDragLayer = (props) => {
 
 			return (
 				<div style={getStyles(props)}>
-					<TableauPartDragPreview cards={cards} />
+					<TableauPart cards={cards} />
 				</div>
 			);
 		default:

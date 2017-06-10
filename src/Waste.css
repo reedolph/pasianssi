@@ -5,7 +5,8 @@
 	flex: 2;
 }
 
-.waste .card {
+.waste > .draggableCard,
+.waste > .card {
 	position: relative;
 	top: 0;
 	left: 0;
@@ -21,13 +22,17 @@
 	box-shadow: 0rem 0rem 2rem -0.15rem rgba(0,0,0,0.75);
 }
 
+.waste .card + .draggableCard,
 .waste .card + .card {
 	position: absolute;
 }
 
+.waste .card.spread + .draggableCard,
 .waste .card.spread + .card.spread {
 	margin-left: 8%;
 }
+
+.waste .card.spread + .card.spread + .draggableCard,
 .waste .card.spread + .card.spread + .card.spread {
 	margin-left: 16%;
 }

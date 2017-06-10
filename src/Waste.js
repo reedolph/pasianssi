@@ -1,11 +1,12 @@
 import React from 'react';
 
+import DraggableCard from './DraggableCard.js';
 import Card from './Card.js';
 
 import './Waste.css';
 
 const Waste = (props) => {
-	const { handleDoubleClick } = props;
+	const { handleClick, handleDoubleClick } = props;
 
 	const cards = props.cards.map((card, index, arr) => {
 		const { rank, suit, isFaceUp, isSpread } = card;
@@ -16,25 +17,38 @@ const Waste = (props) => {
 		}
 
 		let isDraggable = false;
-		let isDoubleClickable = false;
 		if (isLast) {
 			isDraggable = true;
-			isDoubleClickable = true;
 		}
 
-		return (
-			<Card
-				location="waste"
-				key={rank + suit}
-				rank={rank}
-				suit={suit}
-				isFaceUp={isFaceUp}
-				isSpread={isSpread}
-				isDraggable={isDraggable}
-				isDoubleClickable={isDoubleClickable}
-				handleDoubleClick={handleDoubleClick}
-			/>
-		);
+		if (isDraggable) {
+			return (
+				<DraggableCard
+					location="waste"
+					key={rank + suit}
+					rank={rank}
+					suit={suit}
+					isFaceUp={isFaceUp}
+					isSpread={isSpread}
+					handleClick={handleClick}
+					handleDoubleClick={handleDoubleClick}
+				/>
+			);
+		} else {
+			return (
+				<Card
+					location="waste"
+					key={rank + suit}
+					rank={rank}
+					suit={suit}
+					isFaceUp={isFaceUp}
+					isSpread={isSpread}
+					isDraggable={false}
+					handleClick={handleClick}
+					handleDoubleClick={handleDoubleClick}
+				/>
+			);
+		}
 	});
 
 	return (

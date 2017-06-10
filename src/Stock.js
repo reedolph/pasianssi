@@ -5,7 +5,7 @@ import Card from './Card.js';
 import './Stock.css';
 
 const Stock = (props) => {
-	const { cards, handleClick } = props;
+	const { cards, handleClick, handleDoubleClick } = props;
 
 	const renderedCards = cards.map((card, index, arr) => {
 		const { rank, suit, isFaceUp } = card;
@@ -17,6 +17,8 @@ const Stock = (props) => {
 				rank={rank}
 				suit={suit}
 				isFaceUp={isFaceUp}
+				handleClick={handleClick}
+				handleDoubleClick={handleDoubleClick}
 			/>
 		);
 	});

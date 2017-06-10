@@ -5,8 +5,8 @@ import './Card.css';
 const Card = (props) => {
 	const {
 		location, rank, suit, isFaceUp, isSpread, style,
-		isClickable, isDoubleClickable,
-		handleClick, handleDoubleClick
+		handleClick, handleDoubleClick,
+		isDraggable
 	} = props;
 
 	let rankLetter;
@@ -31,15 +31,8 @@ const Card = (props) => {
 		isSpread: isSpread
 	};
 
-	let onClick = null;
-	if (isClickable) {
-		onClick = (e) => handleClick(e, location, card);
-	}
-
-	let onDoubleClick = null;
-	if (isDoubleClickable) {
-		onDoubleClick = (e) => handleDoubleClick(e, location, card);
-	}
+	const onClick = (e) => handleClick(e, location, card);
+	const onDoubleClick = (e) => handleDoubleClick(e, location, card);
 
 	return <img
 		className={'card' + (isSpread ? ' spread' : '')}
@@ -48,6 +41,7 @@ const Card = (props) => {
 		onClick={onClick}
 		onDoubleClick={onDoubleClick}
 		style={style}
+		draggable={isDraggable || false}
 	/>;
 };
 

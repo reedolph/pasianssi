@@ -2,6 +2,7 @@ import React from 'react';
 import { DropTarget } from 'react-dnd';
 
 import Card from './Card.js';
+import DraggableCard from './DraggableCard.js';
 
 import './Foundation.css';
 
@@ -30,7 +31,10 @@ const collect = (connect, monitor) => {
 }
 
 const Foundation = (props) => {
-	const { id, canDrop, isOver, connectDropTarget } = props;
+	const {
+		id, canDrop, isOver, connectDropTarget,
+		handleClick, handleDoubleClick
+	} = props;
 
 	const cards = props.cards.map((card, index, arr) => {
 		const { rank, suit, isFaceUp } = card;
@@ -45,16 +49,32 @@ const Foundation = (props) => {
 			isDraggable = true;
 		}
 
-		return (
-			<Card
-				location={id}
-				key={rank + suit}
-				rank={rank}
-				suit={suit}
-				isFaceUp={isFaceUp}
-				isDraggable={isDraggable}
-			/>
-		);
+		if (isDraggable) {
+			return (
+				<DraggableCard
+					location={id}
+					key={rank + suit}
+					rank={rank}
+					suit={suit}
+					isFaceUp={isFaceUp}
+					handleClick={handleClick}
+					handleDoubleClick={handleDoubleClick}
+				/>
+			);
+		} else {
+			return (
+				<Card
+					location={id}
+					key={rank + suit}
+					rank={rank}
+					suit={suit}
+					isFaceUp={isFaceUp}
+					isDraggable={false}
+					handleClick={handleClick}
+					handleDoubleClick={handleDoubleClick}
+				/>
+			);
+		}
 	});
 
 	const isActive = canDrop && isOver;

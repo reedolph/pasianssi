@@ -1,3 +1,4 @@
+.tableauPart > .draggableTableauPart,
 .tableauPart > .tableauPart {
 	margin-top: -120%;
 }

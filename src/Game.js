@@ -124,10 +124,6 @@ class Game extends Component {
 	}
 
 	moveCards(cards, source, destination) {
-		console.log('moveCards');
-		console.log(cards);
-		console.log(source);
-
 		const board = this.state.board;
 
 		board[source] = board[source].filter((card) => {
@@ -270,6 +266,8 @@ class Game extends Component {
 					key={id}
 					cards={this.state.board[id]}
 					handleDrop={this.handleDrop.bind(this)}
+					handleClick={this.handleClick.bind(this)}
+					handleDoubleClick={this.handleDoubleClick.bind(this)}
 				/>
 			);
 		}
@@ -295,8 +293,10 @@ class Game extends Component {
 				<div className="tableRow" draggable="false">
 					<Stock id="stock" cards={this.state.board.stock}
 						handleClick={this.handleClick.bind(this)}
+						handleDoubleClick={this.handleDoubleClick.bind(this)}
 					/>
 					<Waste id="waste" cards={this.state.board.waste}
+						handleClick={this.handleClick.bind(this)}
 						handleDoubleClick={this.handleDoubleClick.bind(this)}
 					/>
 					{foundations}

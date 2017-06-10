@@ -3,8 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { DragSource } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
-import DraggableCard from './DraggableCard.js';
-import Card from './Card.js';
+import TableauPart from './TableauPart.js';
 
 import './TableauPart.css';
 
@@ -29,14 +28,19 @@ function getStyles(props) {
 
 const tableauPartSource = {
 	canDrag(props) {
-		if (props.hasOwnProperty('cards') && props.cards.length > 1 && props.cards[0].isFaceUp) {
-			return true;
-		} else {
-			return false;
-		}
+		console.log('DraggableTableauPart canDrag true');
+		return true;
+//		if (props.hasOwnProperty('cards') && props.cards.length > 1 && props.cards[0].isFaceUp) {
+//			console.log('DraggableTableauPart canDrag true');
+//			return true;
+//		} else {
+//			console.log('DraggableTableauPart canDrag false');
+//			return false;
+//		}
 	},
 
 	beginDrag(props, monitor, component) {
+		console.log('DraggableTableauPart beginDrag');
 		return {
 			location: props.location,
 			cards: props.cards,
@@ -57,92 +61,22 @@ class DraggableTableauPart extends Component {
 	}
 
 	render() {
-		const { location, cards, handleClick, handleDoubleClick, connectDragSource } = this.props;
+		const { location, cards, handleClick, handleDoubleClick } = this.props;
 
-		let firstCard, tableauPart;
-
-		if (cards.length > 0) {
-			const { rank, suit, isFaceUp } = cards[0];
-
-			let isLast = false;
-			if (cards.length === 1) {
-				isLast = true;
-			}
-
-			let isClickable = false;
-			let isDoubleClickable = false;
-			let isDraggable = false;
-			if (isLast) {
-				if (isFaceUp) {
-					isDraggable = true;
-					isDoubleClickable = true;
-				} else {
-					isClickable = true;
-				}
-			}
-
-			if (isDraggable) {
-				firstCard = <DraggableCard
-					location={location}
-					rank={rank}
-					suit={suit}
-					isFaceUp={isFaceUp}
-					isDraggable={isDraggable}
-					isClickable={isClickable}
-					isDoubleClickable={isDoubleClickable}
-					handleClick={handleClick}
-					handleDoubleClick={handleDoubleClick}
-				/>;
-			} else {
-				firstCard = <Card
-					location={location}
-					rank={rank}
-					suit={suit}
-					isFaceUp={isFaceUp}
-					isDraggable={isDraggable}
-					isClickable={isClickable}
-					isDoubleClickable={isDoubleClickable}
-					handleClick={handleClick}
-					handleDoubleClick={handleDoubleClick}
-				/>;
-			}
-
-			if (cards.length > 1) {
-				tableauPart = (
-					<DraggableTableauPart
+		return (
+			this.props.connectDragSource(
+				<div className="draggableTableauPart">
+					<TableauPart
+						isDraggable={true}
+						style={getStyles(this.props)}
 						location={location}
+						cards={cards}
 						handleClick={handleClick}
 						handleDoubleClick={handleDoubleClick}
-						cards={cards.slice(1)}
 					/>
-				);
-			}
-		}
-
-		if (cards.length > 1 && cards[0].isFaceUp) {
-			return (
-				connectDragSource(
-					<div
-						className="tableauPart"
-						style={getStyles(this.props)}
-					>
-						{firstCard}
-						{tableauPart}
-					</div>
-				)
-			);
-		} else {
-			return (
-				<div
-					className="tableauPart"
-					style={getStyles(this.props)}
-					draggable="false"
-				>
-					{firstCard}
-					{tableauPart}
 				</div>
-			);
-		}
+			)
+		);
 	}
 }
 
