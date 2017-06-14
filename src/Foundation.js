@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Card from './Card.js';
 import DraggableCard from './DraggableCard.js';
+import { ItemTypes } from './Constants.js';
 
 import './Foundation.css';
 
@@ -101,4 +102,4 @@ Foundation.propTypes = {
 	connectDropTarget: PropTypes.func.isRequired
 }
 
-export default DropTarget('card', foundationTarget, collect)(Foundation);
+export default DropTarget(ItemTypes.CARD, foundationTarget, collect)(Foundation);

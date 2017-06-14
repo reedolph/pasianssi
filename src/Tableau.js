@@ -4,6 +4,7 @@ import { DropTarget } from 'react-dnd';
 
 import DraggableTableauPart from './DraggableTableauPart.js';
 import TableauPart from './TableauPart.js';
+import { ItemTypes } from './Constants.js';
 
 import './Tableau.css';
 
@@ -14,7 +15,7 @@ const tableauTarget = {
 
 	drop(props, monitor) {
 		switch (monitor.getItemType()) {
-			case 'card':
+			case ItemTypes.CARD:
 				const card = monitor.getItem();
 				props.handleDrop([{
 					rank: card.rank,
@@ -22,7 +23,7 @@ const tableauTarget = {
 					isFaceUp: card.isFaceUp
 				}], card.location, props.id);
 				break;
-			case 'tableauPart':
+			case ItemTypes.TABLEAUPART:
 				const tableauPart = monitor.getItem();
 				const cards = tableauPart.cards;
 				props.handleDrop(cards, tableauPart.location, props.id);
@@ -91,4 +92,8 @@ Tableau.propTypes = {
 	connectDropTarget: PropTypes.func.isRequired
 }
 
-export default DropTarget(['card', 'tableauPart'], tableauTarget, collect)(Tableau);
+export default DropTarget(
+	[ItemTypes.CARD, ItemTypes.TABLEAUPART],
+	tableauTarget,
+	collect
+)(Tableau);

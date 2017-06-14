@@ -1,5 +1,6 @@
 export const ItemTypes = {
-	CARD: 'card'
+	CARD: 'card',
+	TABLEAUPART: 'tableauPart'
 }
 
 export const Suits = {

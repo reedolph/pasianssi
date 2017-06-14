@@ -5,6 +5,7 @@ import { DragSource } from 'react-dnd';
 
 import getEmptyImage from './getEmptyImage.js';
 import Card from './Card.js';
+import { ItemTypes } from './Constants.js';
 
 function cardCollect(connect, monitor) {
 	return {
@@ -88,4 +89,4 @@ DraggableCard.propTypes = {
 	isDragging: PropTypes.bool.isRequired
 }
 
-export default DragSource('card', cardSource, cardCollect)(DraggableCard);
+export default DragSource(ItemTypes.CARD, cardSource, cardCollect)(DraggableCard);

@@ -5,6 +5,7 @@ import { DragSource } from 'react-dnd';
 
 import getEmptyImage from './getEmptyImage.js';
 import TableauPart from './TableauPart.js';
+import { ItemTypes } from './Constants.js';
 
 import './TableauPart.css';
 
@@ -79,4 +80,4 @@ DraggableTableauPart.propTypes = {
 	isDragging: PropTypes.bool.isRequired
 }
 
-export default DragSource('tableauPart', tableauPartSource, tableauPartCollect)(DraggableTableauPart);
+export default DragSource(ItemTypes.TABLEAUPART, tableauPartSource, tableauPartCollect)(DraggableTableauPart);

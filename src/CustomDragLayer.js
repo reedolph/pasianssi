@@ -4,6 +4,7 @@ import { DragLayer } from 'react-dnd';
 
 import Card from './Card.js';
 import TableauPart from './TableauPart.js';
+import { ItemTypes } from './Constants.js';
 
 function collect(monitor) {
 	return {
@@ -49,7 +50,7 @@ const CustomDragLayer = (props) => {
 	}
 
 	switch (itemType) {
-		case 'card':
+		case ItemTypes.CARD:
 			const { rank, suit, isFaceUp } = item;
 
 			return (
@@ -57,7 +58,7 @@ const CustomDragLayer = (props) => {
 					<Card rank={rank} suit={suit} isFaceUp={isFaceUp} />
 				</div>
 			);
-		case 'tableauPart':
+		case ItemTypes.TABLEAUPART:
 			const { cards } = item;
 
 			return (
