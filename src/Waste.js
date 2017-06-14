@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import DraggableCard from './DraggableCard.js';
 import Card from './Card.js';
@@ -56,6 +57,12 @@ const Waste = (props) => {
 			{cards}
 		</div>
 	);
+}
+
+Waste.propTypes = {
+	cards: PropTypes.arrayOf(PropTypes.object),
+	handleClick: PropTypes.func,
+	handleDoubleClick: PropTypes.func,
 }
 
 export default Waste;

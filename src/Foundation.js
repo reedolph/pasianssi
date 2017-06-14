@@ -1,5 +1,6 @@
 import React from 'react';
 import { DropTarget } from 'react-dnd';
+import PropTypes from 'prop-types';
 
 import Card from './Card.js';
 import DraggableCard from './DraggableCard.js';
@@ -87,6 +88,17 @@ const Foundation = (props) => {
 			</div>
 		)
 	);
+}
+
+Foundation.propTypes = {
+	id: PropTypes.string.isRequired,
+	cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+	handleClick: PropTypes.func,
+	handleDoubleClick: PropTypes.func,
+
+	isOver: PropTypes.bool.isRequired,
+	canDrop: PropTypes.bool.isRequired,
+	connectDropTarget: PropTypes.func.isRequired
 }
 
 export default DropTarget('card', foundationTarget, collect)(Foundation);

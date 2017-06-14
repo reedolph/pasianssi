@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DragLayer } from 'react-dnd';
 
 import Card from './Card.js';
@@ -68,5 +69,15 @@ const CustomDragLayer = (props) => {
 			break;
 	}
 };
+
+CustomDragLayer.propTypes = {
+	item: PropTypes.object,
+	itemType: PropTypes.string,
+	currentOffset: PropTypes.shape({
+		x: PropTypes.number.isRequired,
+		y: PropTypes.number.isRequired
+	}),
+	isDragging: PropTypes.bool.isRequired
+}
 
 export default DragLayer(collect)(CustomDragLayer);

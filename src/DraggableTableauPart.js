@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
 
 import getEmptyImage from './getEmptyImage.js';
@@ -65,6 +66,17 @@ class DraggableTableauPart extends Component {
 			)
 		);
 	}
+}
+
+DraggableTableauPart.propTypes = {
+	location: PropTypes.string.isRequired,
+	cards: PropTypes.arrayOf(PropTypes.object),
+	handleClick: PropTypes.func,
+	handleDoubleClick: PropTypes.func,
+
+	connectDragSource: PropTypes.func.isRequired,
+	connectDragPreview: PropTypes.func.isRequired,
+	isDragging: PropTypes.bool.isRequired
 }
 
 export default DragSource('tableauPart', tableauPartSource, tableauPartCollect)(DraggableTableauPart);

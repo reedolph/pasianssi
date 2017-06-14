@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import DraggableTableauPart from './DraggableTableauPart.js';
 import DraggableCard from './DraggableCard.js';
@@ -8,8 +9,9 @@ import Card from './Card.js';
 
 const TableauPart = (props) => {
 	const {
-		location, cards, style, isDraggable,
-		handleClick, handleDoubleClick
+		location, cards, style,
+		handleClick, handleDoubleClick,
+		isDraggable
 	} = props;
 
 	let firstCard, tableauPart;
@@ -75,6 +77,15 @@ const TableauPart = (props) => {
 			{tableauPart}
 		</div>
 	);
+}
+
+TableauPart.propTypes = {
+	location: PropTypes.string.isRequired,
+	cards: PropTypes.arrayOf(PropTypes.object),
+	handleClick: PropTypes.func,
+	handleDoubleClick: PropTypes.func,
+	style: PropTypes.object,
+	isDraggable: PropTypes.bool,
 }
 
 export default TableauPart;

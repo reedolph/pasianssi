@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Card.css';
 
@@ -44,5 +45,17 @@ const Card = (props) => {
 		draggable={isDraggable || false}
 	/>;
 };
+
+Card.propTypes = {
+	location: PropTypes.string,
+	rank: PropTypes.number.isRequired,
+	suit: PropTypes.string.isRequired,
+	isFaceUp: PropTypes.bool,
+	isSpread: PropTypes.bool,
+	style: PropTypes.object,
+	handleClick: PropTypes.func,
+	handleDoubleClick: PropTypes.func,
+	isDraggable: PropTypes.bool
+}
 
 export default Card;

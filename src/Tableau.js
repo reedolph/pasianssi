@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 
 import DraggableTableauPart from './DraggableTableauPart.js';
@@ -43,7 +44,11 @@ const collect = (connect, monitor) => {
 }
 
 const Tableau = (props) => {
-	const { id, cards, canDrop, isOver, handleClick, handleDoubleClick, connectDropTarget } = props;
+	const {
+		id, cards,
+		handleClick, handleDoubleClick,
+		canDrop, isOver, connectDropTarget
+	} = props;
 
 	const isActive = canDrop && isOver;
 
@@ -73,6 +78,17 @@ const Tableau = (props) => {
 			</div>
 		)
 	);
+}
+
+Tableau.propTypes = {
+	id: PropTypes.string.isRequired,
+	cards: PropTypes.arrayOf(PropTypes.object),
+	handleClick: PropTypes.func,
+	handleDoubleClick: PropTypes.func,
+
+	isOver: PropTypes.bool.isRequired,
+	canDrop: PropTypes.bool.isRequired,
+	connectDropTarget: PropTypes.func.isRequired
 }
 
 export default DropTarget(['card', 'tableauPart'], tableauTarget, collect)(Tableau);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Card from './Card.js';
 
@@ -28,6 +29,12 @@ const Stock = (props) => {
 			{renderedCards}
 		</div>
 	);
+}
+
+Stock.propTypes = {
+	cards: PropTypes.arrayOf(PropTypes.object),
+	handleClick: PropTypes.func,
+	handleDoubleClick: PropTypes.func,
 }
 
 export default Stock;

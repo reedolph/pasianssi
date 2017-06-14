@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
 
 import getEmptyImage from './getEmptyImage.js';
@@ -50,7 +51,6 @@ class DraggableCard extends Component {
 	render() {
 		const {
 			location, rank, suit, isFaceUp, isSpread,
-			isClickable, isDoubleClickable,
 			handleClick, handleDoubleClick
 		} = this.props;
 
@@ -63,8 +63,6 @@ class DraggableCard extends Component {
 						suit={suit}
 						isFaceUp={isFaceUp}
 						isSpread={isSpread}
-						isClickable={isClickable}
-						isDoubleClickable={isDoubleClickable}
 						handleClick={handleClick}
 						handleDoubleClick={handleDoubleClick}
 						isDraggable={true}
@@ -75,5 +73,19 @@ class DraggableCard extends Component {
 		);
 	}
 };
+
+DraggableCard.propTypes = {
+	location: PropTypes.string.isRequired,
+	rank: PropTypes.number.isRequired,
+	suit: PropTypes.string.isRequired,
+	isFaceUp: PropTypes.bool,
+	isSpread: PropTypes.bool,
+	handleClick: PropTypes.func,
+	handleDoubleClick: PropTypes.func,
+
+	connectDragSource: PropTypes.func.isRequired,
+	connectDragPreview: PropTypes.func.isRequired,
+	isDragging: PropTypes.bool.isRequired
+}
 
 export default DragSource('card', cardSource, cardCollect)(DraggableCard);
