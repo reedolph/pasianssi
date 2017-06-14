@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { DragDropContext } from 'react-dnd';
-// import HTML5Backend from 'react-dnd-html5-backend';
 import TouchBackend from 'react-dnd-touch-backend';
 
 import { Suits, SuitColors, Ranks } from './Constants.js';
@@ -254,10 +253,10 @@ class Game extends Component {
 		console.log('VICTORY');
 	}
 
-	render() {
+	renderFoundations(num) {
 		const foundations = [];
 		let id;
-		for (let i = 0; i < 4; i++) {
+		for (let i = 0; i < num; i++) {
 			id = `foundation${i}`;
 
 			foundations.push(
@@ -271,9 +270,14 @@ class Game extends Component {
 				/>
 			);
 		}
+		return foundations;
+	}
 
+	renderTableaus(num) {
 		const tableaus = [];
-		for (let i = 0; i < 7; i++) {
+		let id;
+
+		for (let i = 0; i < num; i++) {
 			id = `tableau${i}`;
 
 			tableaus.push(
@@ -287,6 +291,13 @@ class Game extends Component {
 				/>
 			);
 		}
+
+		return tableaus;
+	}
+
+	render() {
+		const foundations = this.renderFoundations(4);
+		const tableaus = this.renderTableaus(7);
 
 		return (
 			<div className="game" draggable="false">

@@ -4378,18 +4378,6 @@ react-dev-utils@^0.5.2:
     sockjs-client "1.0.1"
     strip-ansi "3.0.1"
 
-react-dnd-html5-backend@^2.2.4:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-2.4.1.tgz#439d2bcaf8bd8b87a51386beb51c128826182ddd"
-  dependencies:
-    lodash "^4.2.0"
-
-react-dnd-mouse-backend@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-dnd-mouse-backend/-/react-dnd-mouse-backend-0.1.1.tgz#04c3095a630ce31c0d62fb668b10e87836cfaa7e"
-  dependencies:
-    react-dnd "^2.1.2"
-
 react-dnd-touch-backend@^0.3.6:
   version "0.3.11"
   resolved "https://registry.yarnpkg.com/react-dnd-touch-backend/-/react-dnd-touch-backend-0.3.11.tgz#feaf8b3b146314bb2fc652c954d18bbb44b287eb"
@@ -4397,7 +4385,7 @@ react-dnd-touch-backend@^0.3.6:
     invariant "^2.1.1"
     react-dnd "^2.0.0"
 
-react-dnd@^2.0.0, react-dnd@^2.1.2, react-dnd@^2.2.4:
+react-dnd@^2.0.0, react-dnd@^2.2.4:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/react-dnd/-/react-dnd-2.4.0.tgz#96f0042cd4cd375b4f0c3413f6ec84d267b7d792"
   dependencies:

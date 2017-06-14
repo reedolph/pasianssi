@@ -15,8 +15,6 @@ function collect(monitor) {
 
 function getStyles(props) {
 	const { item, currentOffset } = props;
-	const { rect } = item;
-	const { width, height } = rect;
 
 	if (!currentOffset) {
 		return {
@@ -26,6 +24,9 @@ function getStyles(props) {
 
 	const { x, y } = currentOffset;
 	const transform = `translate(${x}px, ${y}px)`;
+
+	const { rect } = item;
+	const { width, height } = rect;
 
 	return {
 		position: 'absolute',

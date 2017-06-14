@@ -32,8 +32,9 @@ const collect = (connect, monitor) => {
 
 const Foundation = (props) => {
 	const {
-		id, canDrop, isOver, connectDropTarget,
-		handleClick, handleDoubleClick
+		id,
+		handleClick, handleDoubleClick,
+		canDrop, isOver, connectDropTarget
 	} = props;
 
 	const cards = props.cards.map((card, index, arr) => {

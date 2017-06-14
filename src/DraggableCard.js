@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource } from 'react-dnd';
-import { getEmptyImage } from 'react-dnd-html5-backend';
 
+import getEmptyImage from './getEmptyImage.js';
 import Card from './Card.js';
 
 function cardCollect(connect, monitor) {
@@ -25,20 +25,12 @@ function getStyles(props) {
 }
 
 const cardSource = {
-	canDrag(props, monitor) {
-		console.log('DraggableCard canDrag true');
-		return true;
-	},
-
 	beginDrag(props, monitor, component) {
-		console.log('DraggableCard beginDrag');
 		return {
 			location: props.location,
 			rank: props.rank,
 			suit: props.suit,
 			isFaceUp: props.isFaceUp,
-			handleClick: props.handleClick,
-			handleDoubleClick: props.handleDoubleClick,
 			rect: findDOMNode(component).getBoundingClientRect()
 		};
 	}

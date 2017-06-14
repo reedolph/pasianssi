@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource } from 'react-dnd';
-import { getEmptyImage } from 'react-dnd-html5-backend';
 
+import getEmptyImage from './getEmptyImage.js';
 import TableauPart from './TableauPart.js';
 
 import './TableauPart.css';
@@ -27,20 +27,7 @@ function getStyles(props) {
 }
 
 const tableauPartSource = {
-	canDrag(props) {
-		console.log('DraggableTableauPart canDrag true');
-		return true;
-//		if (props.hasOwnProperty('cards') && props.cards.length > 1 && props.cards[0].isFaceUp) {
-//			console.log('DraggableTableauPart canDrag true');
-//			return true;
-//		} else {
-//			console.log('DraggableTableauPart canDrag false');
-//			return false;
-//		}
-	},
-
 	beginDrag(props, monitor, component) {
-		console.log('DraggableTableauPart beginDrag');
 		return {
 			location: props.location,
 			cards: props.cards,
@@ -67,12 +54,12 @@ class DraggableTableauPart extends Component {
 			this.props.connectDragSource(
 				<div className="draggableTableauPart">
 					<TableauPart
-						isDraggable={true}
-						style={getStyles(this.props)}
 						location={location}
 						cards={cards}
 						handleClick={handleClick}
 						handleDoubleClick={handleDoubleClick}
+						isDraggable={true}
+						style={getStyles(this.props)}
 					/>
 				</div>
 			)
