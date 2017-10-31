@@ -1,7 +1,7 @@
 .game {
 	width: auto;
 	max-width: 1200px;
-	max-height: 100%;
+	height: 100%;
 	margin: 0 auto;
 
 	display: flex;
@@ -13,13 +13,13 @@
 .tableRow {
 	width: 100%;
 
-	flex: 1;
+	flex: 0 0 auto;
 	display: flex;
 	flex-flow: row nowrap;
 }
 
 .area {
-	width: 14.285%;
+	width: 14.285%; /* 100% / 7 */
 	position: relative;
 	margin: 0.5%;
 	border-radius: 0.5rem;
