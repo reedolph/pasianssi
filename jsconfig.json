@@ -3,11 +3,6 @@
 		"target": "ES6"
 	},
 	"files": [
-		"src/"
-	],
-	"typeAcquisition": {
-		"include": [
-			"react"
-		]
-	}
+		"src/**/*"
+	]
 }
