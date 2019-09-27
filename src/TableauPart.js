@@ -7,10 +7,13 @@ import Card from './Card.js';
 
 // import './TableauPart.css';
 
-const TableauPart = (props) => {
+const TableauPart = props => {
 	const {
-		location, cards, style,
-		handleClick, handleDoubleClick,
+		location,
+		cards,
+		style,
+		handleClick,
+		handleDoubleClick,
 		isDraggable
 	} = props;
 
@@ -77,7 +80,7 @@ const TableauPart = (props) => {
 			{tableauPart}
 		</div>
 	);
-}
+};
 
 TableauPart.propTypes = {
 	location: PropTypes.string.isRequired,
@@ -85,7 +88,7 @@ TableauPart.propTypes = {
 	handleClick: PropTypes.func,
 	handleDoubleClick: PropTypes.func,
 	style: PropTypes.object,
-	isDraggable: PropTypes.bool,
-}
+	isDraggable: PropTypes.bool
+};
 
 export default TableauPart;

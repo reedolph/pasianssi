@@ -17,11 +17,17 @@ const tableauTarget = {
 		switch (monitor.getItemType()) {
 			case ItemTypes.CARD:
 				const card = monitor.getItem();
-				props.handleDrop([{
-					rank: card.rank,
-					suit: card.suit,
-					isFaceUp: card.isFaceUp
-				}], card.location, props.id);
+				props.handleDrop(
+					[
+						{
+							rank: card.rank,
+							suit: card.suit,
+							isFaceUp: card.isFaceUp
+						}
+					],
+					card.location,
+					props.id
+				);
 				break;
 			case ItemTypes.TABLEAUPART:
 				const tableauPart = monitor.getItem();
@@ -42,44 +48,50 @@ const collect = (connect, monitor) => {
 		isOver: monitor.isOver(),
 		canDrop: monitor.canDrop()
 	};
-}
+};
 
-const Tableau = (props) => {
+const Tableau = props => {
 	const {
-		id, cards,
-		handleClick, handleDoubleClick,
-		canDrop, isOver, connectDropTarget
+		id,
+		cards,
+		handleClick,
+		handleDoubleClick,
+		canDrop,
+		isOver,
+		connectDropTarget
 	} = props;
 
 	const isActive = canDrop && isOver;
 
 	let firstTableauPart;
 	if (cards.length > 1 && cards[0].isFaceUp) {
-		firstTableauPart = <DraggableTableauPart
-			key={`${id}${cards.length - 1}`}
-			location={id}
-			cards={cards}
-			handleClick={handleClick}
-			handleDoubleClick={handleDoubleClick}
-		/>
+		firstTableauPart = (
+			<DraggableTableauPart
+				key={`${id}${cards.length - 1}`}
+				location={id}
+				cards={cards}
+				handleClick={handleClick}
+				handleDoubleClick={handleDoubleClick}
+			/>
+		);
 	} else if (cards.length <= 1 || !cards[0].isFaceUp) {
-		firstTableauPart = <TableauPart
-			key={`${id}${cards.length - 1}`}
-			location={id}
-			cards={cards}
-			handleClick={handleClick}
-			handleDoubleClick={handleDoubleClick}
-		/>
+		firstTableauPart = (
+			<TableauPart
+				key={`${id}${cards.length - 1}`}
+				location={id}
+				cards={cards}
+				handleClick={handleClick}
+				handleDoubleClick={handleDoubleClick}
+			/>
+		);
 	}
 
-	return (
-		connectDropTarget(
-			<div id={id} className={'tableau area' + (isActive ? ' active' : '')}>
-				{firstTableauPart}
-			</div>
-		)
+	return connectDropTarget(
+		<div id={id} className={'tableau area' + (isActive ? ' active' : '')}>
+			{firstTableauPart}
+		</div>
 	);
-}
+};
 
 Tableau.propTypes = {
 	id: PropTypes.string.isRequired,
@@ -90,7 +102,7 @@ Tableau.propTypes = {
 	isOver: PropTypes.bool.isRequired,
 	canDrop: PropTypes.bool.isRequired,
 	connectDropTarget: PropTypes.func.isRequired
-}
+};
 
 export default DropTarget(
 	[ItemTypes.CARD, ItemTypes.TABLEAUPART],

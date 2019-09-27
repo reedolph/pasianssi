@@ -1,4 +1,6 @@
-import 'babel-polyfill';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+import 'core-js/features/object/values';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,7 +11,4 @@ import 'normalize-css';
 
 import './index.css';
 
-ReactDOM.render(
-	<App />,
-	document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));

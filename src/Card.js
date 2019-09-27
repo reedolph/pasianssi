@@ -3,19 +3,33 @@ import PropTypes from 'prop-types';
 
 import './Card.css';
 
-const Card = (props) => {
+const Card = props => {
 	const {
-		location, rank, suit, isFaceUp, isSpread, style,
-		handleClick, handleDoubleClick,
+		location,
+		rank,
+		suit,
+		isFaceUp,
+		isSpread,
+		style,
+		handleClick,
+		handleDoubleClick,
 		isDraggable
 	} = props;
 
 	let rankLetter;
 	switch (rank) {
-		case 11: rankLetter = 'j'; break;
-		case 12: rankLetter = 'q'; break;
-		case 13: rankLetter = 'k'; break;
-		default: rankLetter = rank + ''; break;
+		case 11:
+			rankLetter = 'j';
+			break;
+		case 12:
+			rankLetter = 'q';
+			break;
+		case 13:
+			rankLetter = 'k';
+			break;
+		default:
+			rankLetter = rank + '';
+			break;
 	}
 
 	let image = '';
@@ -32,18 +46,20 @@ const Card = (props) => {
 		isSpread: isSpread
 	};
 
-	const onClick = (e) => handleClick(e, location, card);
-	const onDoubleClick = (e) => handleDoubleClick(e, location, card);
+	const onClick = e => handleClick(e, location, card);
+	const onDoubleClick = e => handleDoubleClick(e, location, card);
 
-	return <img
-		className={'card' + (isSpread ? ' spread' : '')}
-		src={image}
-		alt={rank + suit}
-		onClick={onClick}
-		onDoubleClick={onDoubleClick}
-		style={style}
-		draggable={isDraggable || false}
-	/>;
+	return (
+		<img
+			className={'card' + (isSpread ? ' spread' : '')}
+			src={image}
+			alt={rank + suit}
+			onClick={onClick}
+			onDoubleClick={onDoubleClick}
+			style={style}
+			draggable={isDraggable || false}
+		/>
+	);
 };
 
 Card.propTypes = {
@@ -56,6 +72,6 @@ Card.propTypes = {
 	handleClick: PropTypes.func,
 	handleDoubleClick: PropTypes.func,
 	isDraggable: PropTypes.bool
-}
+};
 
 export default Card;

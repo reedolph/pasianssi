@@ -12,18 +12,18 @@ function cardCollect(connect, monitor) {
 		connectDragSource: connect.dragSource(),
 		connectDragPreview: connect.dragPreview(),
 		isDragging: monitor.isDragging()
-	}
+	};
 }
 
 function getStyles(props) {
-	const { isDragging } = props;
+	const { isDragging } = props;
 
 	return {
 		// IE fallback: hide the real node using CSS when dragging
 		// because IE will ignore our custom "empty image" drag preview.
 		opacity: isDragging ? 0 : 1,
-		height: isDragging ? 0 : '',
-	}
+		height: isDragging ? 0 : ''
+	};
 }
 
 const cardSource = {
@@ -51,29 +51,32 @@ class DraggableCard extends Component {
 
 	render() {
 		const {
-			location, rank, suit, isFaceUp, isSpread,
-			handleClick, handleDoubleClick
+			location,
+			rank,
+			suit,
+			isFaceUp,
+			isSpread,
+			handleClick,
+			handleDoubleClick
 		} = this.props;
 
-		return (
-			this.props.connectDragSource(
-				<div className="draggableCard">
-					<Card
-						location={location}
-						rank={rank}
-						suit={suit}
-						isFaceUp={isFaceUp}
-						isSpread={isSpread}
-						handleClick={handleClick}
-						handleDoubleClick={handleDoubleClick}
-						isDraggable={true}
-						style={getStyles(this.props)}
-					/>
-				</div>
-			)
+		return this.props.connectDragSource(
+			<div className="draggableCard">
+				<Card
+					location={location}
+					rank={rank}
+					suit={suit}
+					isFaceUp={isFaceUp}
+					isSpread={isSpread}
+					handleClick={handleClick}
+					handleDoubleClick={handleDoubleClick}
+					isDraggable={true}
+					style={getStyles(this.props)}
+				/>
+			</div>
 		);
 	}
-};
+}
 
 DraggableCard.propTypes = {
 	location: PropTypes.string.isRequired,
@@ -87,6 +90,8 @@ DraggableCard.propTypes = {
 	connectDragSource: PropTypes.func.isRequired,
 	connectDragPreview: PropTypes.func.isRequired,
 	isDragging: PropTypes.bool.isRequired
-}
+};
 
-export default DragSource(ItemTypes.CARD, cardSource, cardCollect)(DraggableCard);
+export default DragSource(ItemTypes.CARD, cardSource, cardCollect)(
+	DraggableCard
+);

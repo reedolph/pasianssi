@@ -42,7 +42,7 @@ function getStyles(props) {
 	};
 }
 
-const CustomDragLayer = (props) => {
+const CustomDragLayer = props => {
 	const { isDragging, item, itemType } = props;
 
 	if (!isDragging) {
@@ -51,7 +51,7 @@ const CustomDragLayer = (props) => {
 
 	switch (itemType) {
 		case ItemTypes.CARD:
-			const { rank, suit, isFaceUp } = item;
+			const { rank, suit, isFaceUp } = item;
 
 			return (
 				<div style={getStyles(props)}>
@@ -79,6 +79,6 @@ CustomDragLayer.propTypes = {
 		y: PropTypes.number.isRequired
 	}),
 	isDragging: PropTypes.bool.isRequired
-}
+};
 
 export default DragLayer(collect)(CustomDragLayer);

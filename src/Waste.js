@@ -6,7 +6,7 @@ import Card from './Card.js';
 
 import './Waste.css';
 
-const Waste = (props) => {
+const Waste = props => {
 	const { handleClick, handleDoubleClick } = props;
 
 	const cards = props.cards.map((card, index, arr) => {
@@ -52,17 +52,13 @@ const Waste = (props) => {
 		}
 	});
 
-	return (
-		<div className="waste area">
-			{cards}
-		</div>
-	);
-}
+	return <div className="waste area">{cards}</div>;
+};
 
 Waste.propTypes = {
 	cards: PropTypes.arrayOf(PropTypes.object),
 	handleClick: PropTypes.func,
-	handleDoubleClick: PropTypes.func,
-}
+	handleDoubleClick: PropTypes.func
+};
 
 export default Waste;

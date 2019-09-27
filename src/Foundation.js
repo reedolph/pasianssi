@@ -15,11 +15,17 @@ const foundationTarget = {
 
 	drop(props, monitor) {
 		const card = monitor.getItem();
-		props.handleDrop([{
-			rank: card.rank,
-			suit: card.suit,
-			isFaceUp: card.isFaceUp
-		}], card.location, props.id);
+		props.handleDrop(
+			[
+				{
+					rank: card.rank,
+					suit: card.suit,
+					isFaceUp: card.isFaceUp
+				}
+			],
+			card.location,
+			props.id
+		);
 		return { id: props.id };
 	}
 };
@@ -30,13 +36,16 @@ const collect = (connect, monitor) => {
 		isOver: monitor.isOver(),
 		canDrop: monitor.canDrop()
 	};
-}
+};
 
-const Foundation = (props) => {
+const Foundation = props => {
 	const {
 		id,
-		handleClick, handleDoubleClick,
-		canDrop, isOver, connectDropTarget
+		handleClick,
+		handleDoubleClick,
+		canDrop,
+		isOver,
+		connectDropTarget
 	} = props;
 
 	const cards = props.cards.map((card, index, arr) => {
@@ -82,14 +91,12 @@ const Foundation = (props) => {
 
 	const isActive = canDrop && isOver;
 
-	return (
-		connectDropTarget(
-			<div id={id} className={'foundation area' + (isActive ? ' active' : '')}>
-				{cards}
-			</div>
-		)
+	return connectDropTarget(
+		<div id={id} className={'foundation area' + (isActive ? ' active' : '')}>
+			{cards}
+		</div>
 	);
-}
+};
 
 Foundation.propTypes = {
 	id: PropTypes.string.isRequired,
@@ -100,6 +107,8 @@ Foundation.propTypes = {
 	isOver: PropTypes.bool.isRequired,
 	canDrop: PropTypes.bool.isRequired,
 	connectDropTarget: PropTypes.func.isRequired
-}
+};
 
-export default DropTarget(ItemTypes.CARD, foundationTarget, collect)(Foundation);
+export default DropTarget(ItemTypes.CARD, foundationTarget, collect)(
+	Foundation
+);

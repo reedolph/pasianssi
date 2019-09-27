@@ -1,7 +1,7 @@
 export const ItemTypes = {
 	CARD: 'card',
 	TABLEAUPART: 'tableauPart'
-}
+};
 
 export const Suits = {
 	CLUBS: 'c',
@@ -11,10 +11,10 @@ export const Suits = {
 };
 
 export const SuitColors = {
-	'c': 'black',
-	'd': 'red',
-	'h': 'red',
-	's': 'black'
+	c: 'black',
+	d: 'red',
+	h: 'red',
+	s: 'black'
 };
 
 export const Ranks = {

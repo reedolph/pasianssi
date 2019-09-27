@@ -19,7 +19,9 @@ class Game extends Component {
 
 		let cards = this.createCards();
 		cards = this.shuffle(cards);
-		this.deal(cards);
+		let board = this.deal(cards);
+
+		this.state = { board: board };
 	}
 
 	createCards() {
@@ -76,19 +78,19 @@ class Game extends Component {
 
 		board.stock = cards;
 
-		board.stock.forEach((card) => {
+		board.stock.forEach(card => {
 			card.isFaceUp = false;
 		});
 
 		board.waste = [];
 
-		this.state = {board: board};
+		return board;
 	}
 
 	turnCards() {
 		let board = this.state.board;
 
-		board.waste.forEach((card) => {
+		board.waste.forEach(card => {
 			card.isSpread = false;
 		});
 
@@ -109,7 +111,7 @@ class Game extends Component {
 	resetStock() {
 		let board = this.state.board;
 
-		board.waste.forEach((card) => {
+		board.waste.forEach(card => {
 			card.isFaceUp = false;
 			card.isSpread = false;
 		});
@@ -125,7 +127,7 @@ class Game extends Component {
 	moveCards(cards, source, destination) {
 		const board = this.state.board;
 
-		board[source] = board[source].filter((card) => {
+		board[source] = board[source].filter(card => {
 			for (let i = 0; i < cards.length; i++) {
 				if (card.rank === cards[i].rank && card.suit === cards[i].suit) {
 					return false;
@@ -175,7 +177,10 @@ class Game extends Component {
 				}
 				this.moveCards(droppedCards, source, destination);
 			} else {
-				if (droppedCard.suit !== topDestinationCard.suit || droppedCard.rank !== topDestinationCard.rank + 1) {
+				if (
+					droppedCard.suit !== topDestinationCard.suit ||
+					droppedCard.rank !== topDestinationCard.rank + 1
+				) {
 					return false;
 				}
 				this.moveCards(droppedCards, source, destination);
@@ -189,7 +194,10 @@ class Game extends Component {
 				}
 				this.moveCards(droppedCards, source, destination);
 			} else {
-				if (SuitColors[bottomDroppedCard.suit] === SuitColors[topDestinationCard.suit]) {
+				if (
+					SuitColors[bottomDroppedCard.suit] ===
+					SuitColors[topDestinationCard.suit]
+				) {
 					return false;
 				}
 				if (bottomDroppedCard.rank !== topDestinationCard.rank - 1) {
@@ -207,7 +215,7 @@ class Game extends Component {
 		if (location === 'stock') {
 			if (this.state.board.stock.length > 0) {
 				this.turnCards();
-			} else {
+			} else {
 				this.resetStock();
 			}
 		} else if (location.startsWith('tableau')) {
@@ -302,11 +310,15 @@ class Game extends Component {
 		return (
 			<div className="game" draggable="false">
 				<div className="tableRow" draggable="false">
-					<Stock id="stock" cards={this.state.board.stock}
+					<Stock
+						id="stock"
+						cards={this.state.board.stock}
 						handleClick={this.handleClick.bind(this)}
 						handleDoubleClick={this.handleDoubleClick.bind(this)}
 					/>
-					<Waste id="waste" cards={this.state.board.waste}
+					<Waste
+						id="waste"
+						cards={this.state.board.waste}
 						handleClick={this.handleClick.bind(this)}
 						handleDoubleClick={this.handleDoubleClick.bind(this)}
 					/>

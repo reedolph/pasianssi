@@ -14,18 +14,18 @@ function tableauPartCollect(connect, monitor) {
 		connectDragSource: connect.dragSource(),
 		connectDragPreview: connect.dragPreview(),
 		isDragging: monitor.isDragging()
-	}
+	};
 }
 
 function getStyles(props) {
-	const { isDragging } = props;
+	const { isDragging } = props;
 
 	return {
 		// IE fallback: hide the real node using CSS when dragging
 		// because IE will ignore our custom "empty image" drag preview.
 		opacity: isDragging ? 0 : 1,
-		height: isDragging ? 0 : '',
-	}
+		height: isDragging ? 0 : ''
+	};
 }
 
 const tableauPartSource = {
@@ -52,19 +52,17 @@ class DraggableTableauPart extends Component {
 	render() {
 		const { location, cards, handleClick, handleDoubleClick } = this.props;
 
-		return (
-			this.props.connectDragSource(
-				<div className="draggableTableauPart">
-					<TableauPart
-						location={location}
-						cards={cards}
-						handleClick={handleClick}
-						handleDoubleClick={handleDoubleClick}
-						isDraggable={true}
-						style={getStyles(this.props)}
-					/>
-				</div>
-			)
+		return this.props.connectDragSource(
+			<div className="draggableTableauPart">
+				<TableauPart
+					location={location}
+					cards={cards}
+					handleClick={handleClick}
+					handleDoubleClick={handleDoubleClick}
+					isDraggable={true}
+					style={getStyles(this.props)}
+				/>
+			</div>
 		);
 	}
 }
@@ -78,6 +76,10 @@ DraggableTableauPart.propTypes = {
 	connectDragSource: PropTypes.func.isRequired,
 	connectDragPreview: PropTypes.func.isRequired,
 	isDragging: PropTypes.bool.isRequired
-}
+};
 
-export default DragSource(ItemTypes.TABLEAUPART, tableauPartSource, tableauPartCollect)(DraggableTableauPart);
+export default DragSource(
+	ItemTypes.TABLEAUPART,
+	tableauPartSource,
+	tableauPartCollect
+)(DraggableTableauPart);
